@@ -1,8 +1,9 @@
-﻿open System
-open BenchmarkDotNet.Running
-open Base
+﻿open BenchmarkDotNet.Running
+open Collections
+
 
 [<EntryPoint>]
 let main argv =
-    BenchmarkRunner.Run<Benchmarks>() |> ignore
-    0 // return an integer exit code
+    let switcher = BenchmarkSwitcher [| typeof<Dictionary>; typeof<List> |]
+    switcher.Run argv |> ignore
+    0
